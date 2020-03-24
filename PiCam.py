@@ -7,6 +7,10 @@ from pathlib import Path
 
 
 def get_coords():
+	'''
+	:return : (tuple) latitude and longitude coordinates
+	
+	'''
 	
 	coords = {}
 	
