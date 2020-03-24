@@ -3,8 +3,6 @@ from picamera import PiCamera
 import adafruit_gps
 import serial
 import time
-import PIL.ExifTags
-import PIL.Image
 from pathlib import Path
 
 
@@ -34,6 +32,7 @@ def timestamp():
 	filename = 'img_'+ timestamp + '.jpg'
 	
 	return filename
+
 
 def take_picture(folder_name, file_name):
 	'''
