@@ -3,6 +3,9 @@ from picamera import PiCamera
 import adafruit_gps
 import serial
 import time
+import PIL.ExifTags
+import PIL.Image
+from pathlib import Path
 
 
 def get_coords():
@@ -17,21 +20,39 @@ def get_coords():
 		gps.update()
 		
 		if len(str(gps.latitude).split('.')[-1]) > 5 and len(str(gps.longitude).split('.')[-1]) > 5:
-			coords['lat'] = gps.latitude
-			coords['lon'] = gps.longitude
+			return gps.latitude, gps.longitude
 			
 			break
 	
-	return coords
+	
+def timestamp():
+	'''
+	:return : (str) filename (timestamp) for picture
+	
+	'''
+	timestamp = time.strftime("%Y%m%d%H%M%S",time.gmtime())
+	filename = 'img_'+ timestamp + '.jpg'
+	
+	return filename
 
-def main():
+def take_picture(folder_name, file_name):
+	'''
+	:param folder : (str) name of dedicated image folder for pictures
+	:param name : (str) filename given by the timestamp function
+	
+	'''
 	camera = PiCamera()
-	camera.resolution = (1920, 1080)
-	camera.start_preview()
-	# Camera warm-up time
-	sleep(2)
-	camera.capture('foo.jpg')
-
+	camera.resolution = (1280, 720)
+	camera.capture(folder_name + '/' + file_name)
+	
+	
+def main():
+	folder = "PiCamexif_IMG"
+	Path(folder).mkdir(parents=True, exist_ok=True)
+	
+	filename = timestamp()
+	take_picture(folder, filename)
+	
 
 if __name__ == '__main__':
-   print(get_coords())
+   main()
