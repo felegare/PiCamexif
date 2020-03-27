@@ -8,6 +8,7 @@ from pathlib import Path
 
 def get_coords():
 	'''
+	Get GPS coordinates with adafruit GPS module
 	:return : (tuple) latitude and longitude coordinates
 	
 	'''
@@ -29,10 +30,11 @@ def get_coords():
 	
 def timestamp():
 	'''
-	:return : (str) filename (timestamp) for picture
+	Create filename for picture
+	:return : (str) filename (timestamp)
 	
 	'''
-	timestamp = time.strftime("%Y%m%d%H%M%S",time.gmtime())
+	timestamp = time.strftime("%H%M%S",time.gmtime())
 	filename = 'img_'+ timestamp + '.jpg'
 	
 	return filename
@@ -40,6 +42,7 @@ def timestamp():
 
 def take_picture(folder_name, file_name):
 	'''
+	Takes picture with Raspberry Pi Camera Module
 	:param folder : (str) name of dedicated image folder for pictures
 	:param name : (str) filename given by the timestamp function
 	
@@ -50,8 +53,13 @@ def take_picture(folder_name, file_name):
 	
 	
 def main():
-	folder = "PiCamexif_IMG"
+	date = time.strftime("%Y-%m-%d", time.gmtime())
+	folder = "IMG/" + date
+	
+	# Creates a directory for pictures based on the current date
 	Path(folder).mkdir(parents=True, exist_ok=True)
+	
+	print(get_coords())
 	
 	filename = timestamp()
 	take_picture(folder, filename)
