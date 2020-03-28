@@ -1,4 +1,5 @@
 import time
+import RPi.GPIO as GPIO
 from picamera import PiCamera
 import adafruit_gps
 import serial
@@ -24,7 +25,7 @@ def get_coords():
 		gps.update()
 		
 		if len(str(gps.latitude).split('.')[-1]) > 5 and len(str(gps.longitude).split('.')[-1]) > 5:
-			return gps.latitude, gps.longitude, gps.altitude_m
+			return gps.latitude, gps.longitude
 			
 			break
 	
@@ -40,16 +41,6 @@ def timestamp():
 	
 	return filename
 
-
-def take_picture(path):
-	'''
-	Takes picture with Raspberry Pi Camera Module
-	:param path : (str) path to picture
-	
-	'''
-	camera = PiCamera()
-	camera.resolution = (1280, 720)
-	camera.capture(path)
 	
 def edit_exif(path, gps_data):
 	'''
@@ -59,25 +50,38 @@ def edit_exif(path, gps_data):
 	
 	'''
 	photo = gpsphoto.GPSPhoto(path)
-	info = gpsphoto.GPSInfo((gps_data[0], gps_data[1]), int(gps_data[2]))
+	info = gpsphoto.GPSInfo(gps_data)
 	photo.modGPSData(info, path)
 	
 	
 def main():
-	date = time.strftime("%Y-%m-%d", time.gmtime())
-	folder = 'IMG/' + date
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 	
-	# Creates a directory for pictures based on the current date
-	Path(folder).mkdir(parents=True, exist_ok=True)
+	camera = PiCamera()
+	camera.resolution = (1280, 720)
+	preview = camera.start_preview()
+	preview.fullscreen = False
+	preview.window = (0, 0, 1280, 720)
+
+	while True:
+		input_state = GPIO.input(21)
+		
+		if input_state == False:
+			date = time.strftime("%Y-%m-%d", time.gmtime())
+			folder = 'IMG/' + date
 	
-	coords = get_coords()
+			# Creates a directory for pictures based on the current date
+			Path(folder).mkdir(parents=True, exist_ok=True)
 	
-	filename = timestamp()
-	picture_path = folder + '/' + filename
+			coords = get_coords()
 	
-	take_picture(picture_path)
+			filename = timestamp()
+			picture_path = folder + '/' + filename
 	
-	edit_exif(picture_path, coords)
+			camera.capture(picture_path)
+	
+			edit_exif(picture_path, coords)
 	
 
 if __name__ == '__main__':
