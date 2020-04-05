@@ -1,6 +1,6 @@
 ### Table of Contents
 - [PiCamExif Overview](#PiCamexif-Overview)
-  * [Hardware Components](#Hardware-Components-(for-now))
+  * [Hardware Components](#Hardware-Components)
   * [Requirements](#Requirements)
   * [Raspberry Pi Configuration](#Raspberry-Pi-Configuration)
     * [Raspberry Pi](#Raspberry-Pi)
@@ -18,7 +18,7 @@ This README will go over how the program works and how the hardware is configure
 
 All the links for the hardware used for this project are included in the 'Hardware Components' section below. 
 
-## Hardware Components (for now)
+## Hardware Components
 1. [Raspberry Pi 3 Model B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)
 
 <p align="center">
