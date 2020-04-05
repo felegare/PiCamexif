@@ -4,9 +4,10 @@
   * [Requirements](#Requirements)
   * [Raspberry Pi Configuration](#Raspberry-Pi-Configuration)
     * [Raspberry Pi](#Raspberry-Pi)
-      1. Operating system
-      2. Activating the camera
-      3. Installing Virtualenv
+      1. [Operating System](#Operating-System)
+      2. [Activating the Camera](#Activating-the-Camera)
+      3. Set Up the GPS
+      4. Installing Virtualenv
     * [Python Virtualenv](#Python-Virtualenv)
 
 * PiCam.py
@@ -44,12 +45,31 @@ All the links for the hardware used for this project are included in the 'Hardwa
 
 ### Raspberry Pi
 
-##### a. Operating system
+##### a. Operating System
 You can [download](https://www.raspberrypi.org/downloads/raspbian/) the Raspbian operating system and install it on your Micro SD card using Win32DiskImager. For this project, I used 'Raspbian Buster with desktop and recommended software'. It might work with other Raspbian distros but I have not tested it. 
 
-##### b. Activating the camera
+##### b. Activating the Camera
 
-##### c. Set up the GPS
+Once you boot up the Raspberry Pi, open the Terminal and run :
+```shell
+sudo raspi-config
+```
+Using the arrow keys select the 'Interfacing options' and press enter. You should now see the 'Camera' option. Select it and press enter. Press enter a second time and the camera should now be enabled. Reboot the Raspberry Pi.
+
+If you don't see the 'Camera' option, return to the terminal by pressing escape  twice and run :
+```shell
+sudo apt-get update
+```
+then
+
+```shell
+sudo apt-get upgrade
+```
+You should now see the 'Camera' option when you are in the 'Interfacing options'
+
+Once the camera is enabled, reboot the Raspberry Pi.
+
+##### c. Set Up the GPS
 
 ##### d. Installing Virtualenv
 
