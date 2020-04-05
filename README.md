@@ -6,8 +6,7 @@
     * [Raspberry Pi](#Raspberry-Pi)
       1. [Operating System](#Operating-System)
       2. [Activating the Camera](#Activating-the-Camera)
-      3. [virtualenv][virtualenv)
-    * [Python Virtualenv](#Python-Virtualenv)
+      3. [virtualenv](#virtualenv)
 
 * PiCam.py
 
