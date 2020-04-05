@@ -71,6 +71,11 @@ You should now see the 'Camera' option when you are in the 'Interfacing options'
 
 ##### d. Installing Virtualenv
 
+If you wish to install Virtualenv on your Raspberry Pi, simply run :
+```shell
+sudo pip install virtualenv
+```
+
 ### Python Virtualenv
 Using Virtualenv, you can set and activate your python environment with the following commands :
 ```shell
