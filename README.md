@@ -65,9 +65,7 @@ then
 ```shell
 sudo apt-get upgrade
 ```
-You should now see the 'Camera' option when you are in the 'Interfacing options'
-
-Once the camera is enabled, reboot the Raspberry Pi.
+You should now see the 'Camera' option when you are in the 'Interfacing options'. Once the camera is enabled, reboot the Raspberry Pi.
 
 ##### c. Set Up the GPS
 
