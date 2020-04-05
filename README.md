@@ -3,10 +3,9 @@
   * [Hardware Components](#Hardware-Components)
   * [Requirements](#Requirements)
   * [Raspberry Pi Configuration](#Raspberry-Pi-Configuration)
-    * [Raspberry Pi](#Raspberry-Pi)
-      1. [Operating System](#Operating-System)
-      2. [Activating the Camera](#Activating-the-Camera)
-      3. [virtualenv](#virtualenv)
+    * [Operating System](#Operating-System)
+    * [Activating the Camera](#Activating-the-Camera)
+    * [virtualenv](#virtualenv)
 
 * PiCam.py
 
@@ -39,14 +38,12 @@ All the links for the hardware used for this project are included in the 'Hardwa
   - pillow (required by gpsphoto)
   - piexif (required by gpsphoto)
   
-## Configuration
+## Raspberry Pi Configuration
 
-### Raspberry Pi
-
-##### a. Operating System
+##### Operating System
 You can [download](https://www.raspberrypi.org/downloads/raspbian/) the Raspbian operating system and install it on your Micro SD card using Win32DiskImager. For this project, I used 'Raspbian Buster with desktop and recommended software'. It might work with other Raspbian distros but I have not tested it. 
 
-##### b. Activating the Camera
+##### Activating the Camera
 
 Once you boot up the Raspberry Pi, open the Terminal and run :
 ```shell
@@ -65,7 +62,7 @@ sudo apt-get upgrade
 ```
 You should now see the 'Camera' option when you are in the 'Interfacing options'. Once the camera is enabled, reboot the Raspberry Pi.
 
-##### c. virtualenv
+##### virtualenv
 
 If you wish to install virtualenv on your Raspberry Pi, simply run :
 ```shell
