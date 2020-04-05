@@ -6,8 +6,7 @@
     * [Raspberry Pi](#Raspberry-Pi)
       1. [Operating System](#Operating-System)
       2. [Activating the Camera](#Activating-the-Camera)
-      3. Set Up the GPS
-      4. Installing Virtualenv
+      3. [virtualenv][virtualenv)
     * [Python Virtualenv](#Python-Virtualenv)
 
 * PiCam.py
@@ -67,19 +66,16 @@ sudo apt-get upgrade
 ```
 You should now see the 'Camera' option when you are in the 'Interfacing options'. Once the camera is enabled, reboot the Raspberry Pi.
 
-##### c. Set Up the GPS
+##### c. virtualenv
 
-##### d. Installing Virtualenv
-
-If you wish to install Virtualenv on your Raspberry Pi, simply run :
+If you wish to install virtualenv on your Raspberry Pi, simply run :
 ```shell
 sudo pip install virtualenv
 ```
-
-### Python Virtualenv
-Using Virtualenv, you can set and activate your python environment with the following commands :
+You can then set and activate your python environment with the following commands :
 ```shell
 virtualenv YOUR_PATH --python=3.7
 source activate YOUR_ENV/bin/activate
 pip install picamera adafruit-circuitpython-gps gpsphoto exifread pillow piexif
 ```
+> Note : You could also install the python librairies without using virtualenv.
