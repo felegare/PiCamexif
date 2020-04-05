@@ -40,10 +40,10 @@ All the links for the hardware used for this project are included in the 'Hardwa
   
 ## Raspberry Pi Configuration
 
-##### Operating System
+#### Operating System
 You can [download](https://www.raspberrypi.org/downloads/raspbian/) the Raspbian operating system and install it on your Micro SD card using Win32DiskImager. For this project, I used 'Raspbian Buster with desktop and recommended software'. It might work with other Raspbian distros but I have not tested it. 
 
-##### Activating the Camera
+#### Activating the Camera
 
 Once you boot up the Raspberry Pi, open the Terminal and run :
 ```shell
@@ -62,7 +62,7 @@ sudo apt-get upgrade
 ```
 You should now see the 'Camera' option when you are in the 'Interfacing options'. Once the camera is enabled, reboot the Raspberry Pi.
 
-##### virtualenv
+#### virtualenv
 
 If you wish to install virtualenv on your Raspberry Pi, simply run :
 ```shell
