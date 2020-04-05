@@ -1,13 +1,13 @@
 ### Table of Contents
-* [PiCamExif Overview](#PiCam-Overview)
-  - [Hardware Components](##Hardware-Components)
-  - [Requirements](##Requirements)
-  - [Raspberry Pi Configuration](##Raspberry-Pi-Configuration)
-    - [Raspberry Pi](###Raspberry-Pi)
+- [PiCamExif Overview](#PiCam-Overview)
+  * [Hardware Components](#Hardware-Components)
+  * [Requirements](#Requirements)
+  * [Raspberry Pi Configuration](#Raspberry-Pi-Configuration)
+    * [Raspberry Pi](#Raspberry-Pi)
       1. Operating system
       2. Activating the camera
       3. Installing Virtualenv
-    - [Python Virtualenv](###Python-Virtualenv)
+    * [Python Virtualenv](#Python-Virtualenv)
 
 * PiCam.py
 
