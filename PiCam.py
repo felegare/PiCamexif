@@ -28,18 +28,6 @@ def get_coords():
 			return gps.latitude, gps.longitude
 			
 			break
-	
-	
-def timestamp():
-	'''
-	Create filename for picture
-	:return : (str) filename (timestamp)
-	
-	'''
-	timestamp = time.strftime("%H%M%S",time.gmtime())
-	filename = 'img_' + timestamp + '.jpg'
-	
-	return filename
 
 	
 def edit_exif(path, gps_data):
@@ -58,29 +46,39 @@ def main():
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 	
+	# Camera settings
 	camera = PiCamera()
-	camera.resolution = (1280, 720)
+	camera.resolution = (1280, 720) # Pictures' resolution : 720p
+	
+	# Preview window settings
 	preview = camera.start_preview()
 	preview.fullscreen = False
-	preview.window = (0, 0, 1280, 720)
+	preview.window = (0, 0, 480, 320) # Resolution of the screen
 
 	while True:
 		input_state = GPIO.input(21)
 		
+		# If button is pressed
 		if input_state == False:
-			date = time.strftime("%Y-%m-%d", time.gmtime())
-			folder = 'IMG/' + date
-	
+			
+			# Stores the date and time
+			current_date = time.strftime("%Y-%m-%d", time.localtime())
+			current_time = time.strftime("%H%M%S", time.localtime())
+			
 			# Creates a directory for pictures based on the current date
-			Path(folder).mkdir(parents=True, exist_ok=True)
-	
+			Path(f'IMG/{current_date}').mkdir(parents=True, exist_ok=True)
+			
+			# Gets the longitude and latitude coordinates frome the GPS module
 			coords = get_coords()
 	
-			filename = timestamp()
-			picture_path = folder + '/' + filename
+			# Creates unique path for the picture from the date and time
+			picture_path = f'IMG/{current_date}/IMG_{current_time}.jpeg'
 	
+			# Takes the picture
 			camera.capture(picture_path)
-	
+			
+			# Writes the coordinates to the picture's EXIF tags
+			# Saves the pictures
 			edit_exif(picture_path, coords)
 	
 
