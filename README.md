@@ -7,7 +7,7 @@
     * [Activating the Camera](#Activating-the-Camera)
     * [virtualenv](#virtualenv)
 
-* [PiCam.py](#PiCam.py)
+* [PiCam.py](#PiCampy)
 
 
 # PiCamexif Overview
