@@ -76,7 +76,7 @@ pip install picamera adafruit-circuitpython-gps gpsphoto exifread pillow piexif
 ```
 > Note : You could also install the python librairies without using virtualenv.
 
-## PiCam.py
+# PiCam.py
 When running PiCam.py, it opens a preview window showing the camera view. You can then press the trigger button to take a picture.
 
 Each time you press the button, the program will :
