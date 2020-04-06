@@ -1,5 +1,5 @@
 ### Table of Contents
-- [PiCamExif Overview](#PiCamexif-Overview)
+- [PiCamexif Overview](#PiCamexif-Overview)
   * [Hardware Components](#Hardware-Components)
   * [Requirements](#Requirements)
   * [Raspberry Pi Configuration](#Raspberry-Pi-Configuration)
