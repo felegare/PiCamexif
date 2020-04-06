@@ -7,7 +7,7 @@
     * [Activating the Camera](#Activating-the-Camera)
     * [virtualenv](#virtualenv)
 
-* PiCam.py
+* [PiCam.py](#PiCam.py)
 
 
 # PiCamexif Overview
@@ -18,7 +18,7 @@ All the links for the hardware used for this project are included in the 'Hardwa
 
 ## Hardware Components
 
-| # | Components | Image | Description |
+| # | Components | Image | Comment |
 | --- | --- | --- | --- |
 | 1 | [Raspberry Pi 3 Model B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) | <img src="https://www.raspberrypi.org/homepage-9df4b/static/0ac033e17962a041a898d92057e60def/052d8/67d8fcc5b2796665a45f61a2e8a5bb7f10cdd3f5_raspberry-pi-3-1-1619x1080.jpg" width="200"> | |
 | 2 | [Micro SD Card](https://www.samsung.com/us/computing/memory-storage/memory-cards/microsdhc-evo-plus-memory-card-w--adapter-32gb--2017-model--mb-mc32ga-am/) | <img src="https://image-us.samsung.com/SamsungUS/home/computing/memory-and-storage/memory-cards/pd/mb-mc32ga-am/gallery-v2/MB-MC32GA_001_Front_red.jpg?$product-details-jpg$" width="200"> | The SD Card is used to for the Raspberry Pi's operating system and for storage. In this case, a 32GB card might be a little overkill so you could use a 16GB or 8GB micro SD card just fine. |    
@@ -49,7 +49,7 @@ Once you boot up the Raspberry Pi, open the Terminal and run :
 ```shell
 sudo raspi-config
 ```
-Using the arrow keys select the 'Interfacing options' and press enter. You should now see the 'Camera' option. Select it and press enter. Press enter a second time and the camera should now be enabled. Reboot the Raspberry Pi.
+Using the arrow keys select 'Interfacing options' and press enter. You should now see the 'Camera' option. Select it and press enter again to enable the camera. Finally, reboot the Raspberry Pi.
 
 If you don't see the 'Camera' option, return to the terminal by pressing escape  twice and run :
 ```shell
@@ -75,3 +75,19 @@ source activate YOUR_ENV/bin/activate
 pip install picamera adafruit-circuitpython-gps gpsphoto exifread pillow piexif
 ```
 > Note : You could also install the python librairies without using virtualenv.
+
+## PyCam.py
+When running PiCam.py, it opens a preview window showing the camera view. You can then press the trigger button to take a picture.
+
+Each time you press the button, the program will :
+  1. Store the date and time
+  2. Create a unique folder for the date (It will ignore this step if the folder already exists)
+  3. Get the longitude and latitude coordinates from the GPS module
+  4. Create a unique filename for the picture from the time
+  5. Take the picture
+  6. Write the coordinates to the picture's EXIF tags
+  7. Save the picture
+  8. Return to the preview window
+  
+  
+
