@@ -7,8 +7,8 @@
     * [Activating the Camera](#Activating-the-Camera)
     * [virtualenv](#virtualenv)
 
-* [pi_cam.py](#picampy)
-* [points_from_exif.py](#pointsfromexifpy)
+* [pi_cam.py](#pi_campy)
+* [points_from_exif.py](#points_from_exifpy)
 
 # PiCamexif Overview
 PiCamexif is a Raspberry Pi based camera designed to produce pictures containing GPS data. This Raspberry Pi uses a Raspberry Pi Camera Module and Adafruit's GPS Module with a simple python program to write the GPS coordinates in the EXIF tags of the pictures.
