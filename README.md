@@ -7,8 +7,8 @@
     * [Activating the Camera](#Activating-the-Camera)
     * [virtualenv](#virtualenv)
 
-* [PiCam.py](#PiCampy)
-
+* [pi_cam.py](#pi_campy)
+* [points_from_exif.py](#points_from_exifpy)
 
 # PiCamexif Overview
 PiCamexif is a Raspberry Pi based camera designed to produce pictures containing GPS data. This Raspberry Pi uses a Raspberry Pi Camera Module and Adafruit's GPS Module with a simple python program to write the GPS coordinates in the EXIF tags of the pictures.
@@ -37,6 +37,7 @@ All the links for the hardware used for this project are included in the 'Hardwa
   - exifread (required by gpsphoto)
   - pillow (required by gpsphoto)
   - piexif (required by gpsphoto)
+  - simplekml
   
 ## Raspberry Pi Configuration
 
@@ -76,8 +77,8 @@ pip install picamera adafruit-circuitpython-gps gpsphoto exifread pillow piexif
 ```
 > Note : You could also install the python librairies without using virtualenv.
 
-# PiCam.py
-When running PiCam.py, it opens a preview window showing the camera view. You can then press the trigger button to take a picture.
+# pi_cam.py
+When running pi_cam.py, it opens a preview window showing the camera view. You can then press the trigger button to take a picture.
 
 Each time you press the button, the program will :
   1. Store the date and time
@@ -88,6 +89,7 @@ Each time you press the button, the program will :
   6. Write the coordinates to the picture's EXIF tags
   7. Save the picture
   8. Return to the preview window
-  
-  
+
+# points_from_exif.py
+Creates a compressed folder containing a KML file and the pictures from every directories from the 'IMG' foler.
 
