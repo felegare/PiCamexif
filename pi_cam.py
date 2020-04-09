@@ -61,10 +61,12 @@ def main():
 		
 		if gps.has_fix:
 			
-			camera.annotate_text=' '
+			camera.annotate_text='READY'
 		
 			# If button is pressed
 			if input_state == False:
+				
+				camera.annotate_text=' '
 				
 				# Stores the date and time
 				current_date = time.strftime("%Y-%m-%d", time.localtime())
