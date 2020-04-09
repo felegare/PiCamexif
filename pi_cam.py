@@ -17,7 +17,7 @@ def get_coords(gps):
 	while True:
 		gps.update()
 		
-		if len(str(gps.latitude).split('.')[-1]) >= 12 and len(str(gps.longitude).split('.')[-1]) >= 12:
+		if len(str(gps.latitude).split('.')[-1]) >= 14 and len(str(gps.longitude).split('.')[-1]) >= 14:
 			return gps.latitude, gps.longitude
 			
 			break

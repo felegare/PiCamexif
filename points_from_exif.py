@@ -2,7 +2,6 @@ import os
 from GPSPhoto import gpsphoto
 import simplekml
 import shutil
-import zipfile
 
 import smtplib
 from email import encoders
@@ -31,8 +30,7 @@ def send_zip_file(lof):
 		zf = open(zipfile_path, 'rb')
 		zipfile.set_payload(zf.read())
 		encoders.encode_base64(zipfile)
-		zipfile.add_header('Content-Disposition', 'attachment', 
-               filename=zipfile_path)
+		zipfile.add_header('Content-Disposition', 'attachment', filename=zipfile_path)
 		msg.attach(zipfile)
 	
 	msg = msg.as_string()
