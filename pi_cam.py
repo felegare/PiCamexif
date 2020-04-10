@@ -15,9 +15,13 @@ def get_coords(gps):
 	'''
 	
 	while True:
+		
 		gps.update()
 		
+		# The GPS will update until both coordinates have 14 or more decimals
+		# This is to ensure the maximum degree of precision for each picture
 		if len(str(gps.latitude).split('.')[-1]) >= 14 and len(str(gps.longitude).split('.')[-1]) >= 14:
+			
 			return gps.latitude, gps.longitude
 			
 			break
@@ -27,9 +31,10 @@ def edit_exif(path, gps_data):
 	'''
 	Takes gps coordinates and inserts them to the picture's metadata
 	:param path : (str) path to picture
-	:parma gps_data : (tuple) (latitude, longitude, altitude)
+	:param gps_data : (tuple) (latitude, longitude)
 	
 	'''
+	
 	photo = gpsphoto.GPSPhoto(path)
 	info = gpsphoto.GPSInfo(gps_data)
 	photo.modGPSData(info, path)
@@ -50,11 +55,12 @@ def main():
 	# Preview window settings
 	preview = camera.start_preview()
 	preview.fullscreen = False
-	preview.window = (0, -25, 480, 320) # Resolution of the screen
+	preview.window = (0, -25, 480, 320) # Position and resolution of the preview window
 	
 	time.sleep(1)
 
 	while True:
+		
 		input_state = GPIO.input(21)
 		
 		gps.update()

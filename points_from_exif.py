@@ -9,21 +9,91 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 
+def create_kml(folder):
+	'''
+	Creates a kml points file from the gps data extracted from the pictures
+	:param folder : (directory) path of the picture folder
+	
+	'''
+	
+	pictures = os.listdir(f'IMG/{folder}')
+	kml = simplekml.Kml()
+		
+	for image in pictures:
+				
+		if image.endswith('.jpeg'):
+					
+			picture_path = f'IMG/{folder}/{image}'
+			data = gpsphoto.getGPSData(picture_path)
+			point = kml.newpoint(name=image, coords=[(data['Longitude'],data['Latitude'])])
+					
+			pic_path = kml.addfile(picture_path)
+			point.description = f'<img src="./{image}" alt="picture" width="500" align="left" />'
+			
+	kml.save(f'IMG/{folder}/{folder}.kml')
+	
+	
+def create_zipfile(folder, lof):
+	'''
+	Creates a zipfile containing all the pictures from the same folder and adds its path to a list (lof)
+	:param folder : (directory) directory that needs to be compressed 
+	:param lof : (list) list of path(s) to zipfile(s)
+	
+	'''
+	# Create zipfile
+	shutil.make_archive(f'IMG/{folder}', 'zip', f'IMG/{folder}')
+	
+	# Append path of the zipfile to the lof
+	lof.append(f'IMG/{folder}.zip')
+
+
 
 def send_zip_file(lof):
+	'''
+	Sends all of the zipfile(s) created via email
+	:param lof : (list) list of path(s) to zipfile(s)
 	
+	'''
+	# Local environment variables for Raspberri Pi authentification
 	user_address = os.environ['PI_ADDRESS']
 	user_password = os.environ['PI_PASSWORD']
 	
-	destination = str(input('Enter destination address : '))
+	# User writes the recipient's address
+	recipient = str(input('Enter destination address : '))
 	
+	# Message formating
 	msg = MIMEMultipart()
 	msg['From'] = user_address
-	msg['To'] = destination
+	msg['To'] = recipient
 	msg['Subject'] = 'Pictures from PiCamexif'
 	
-	msg.preamble = 'test email sent from python'
+	# github_link = MIMEText(u'<a href="https://github.com/felegare/PiCamexif">GitHub page</a>','html')
 	
+	text = """<body>
+<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Ffr%2Fthumb%2F3%2F3b%2FRaspberry_Pi_logo.svg%2F130px-Raspberry_Pi_logo.svg.png&f=1&nofb=1" alt="RPi logo" width=50/>
+<h2>PiCamexif</h2>
+<p>This email was sent by the <i>PiCamexif</i> Raspberry Pi project.</p>
+<p>Each zip file attached to this email contains :</p>
+<ul>
+	<li>A kml file</li>
+	<li>Pictures</li>
+</ul>
+<p>You can open the kml file using Google Earth Pro.<br>To open the kml file :</p>
+<ol>
+	<li>Make sure Google Earth Pro is installed on your computer (if not, download it <a href="https://www.google.com/earth/versions/#earth-pro">here</a>)</li>
+	<li>Download the attachment</li>
+	<li>Extract all of its content</li>
+	<li>Double click on the kml file.</li>
+</ol>
+<br/>
+<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height=20/>
+<p>Check the project's <a href="https://github.com/felegare/PiCamexif">GitHub page</a></p>
+</body>"""
+	
+	body = MIMEText(text, 'html')
+	msg.attach(body)			   
+	
+	# Attach zipfile(s)
 	for zipfile_path in lof:
 		
 		zipfile = MIMEBase('application', 'zip')
@@ -35,11 +105,13 @@ def send_zip_file(lof):
 	
 	msg = msg.as_string()
 	
+	# Connection parameters
 	server = smtplib.SMTP('smtp.gmail.com', 587)
 	server.starttls()
 	server.login(user_address, user_password)
 	
-	server.sendmail(user_address, destination, msg)
+	# Sends the message
+	server.sendmail(user_address, recipient, msg)
 	server.quit
 
 
@@ -53,26 +125,9 @@ def main():
 		
 		if not directory.endswith('.zip'):
 		
-			pictures = os.listdir(f'IMG/{directory}')
-			kml = simplekml.Kml()
-		
-			for image in pictures:
-				
-				if image.endswith('.jpeg'):
-					
-					picture_path = f'IMG/{directory}/{image}'
-					data = gpsphoto.getGPSData(picture_path)
-					point = kml.newpoint(name=image, coords=[(data['Longitude'],data['Latitude'])])
-					
-					pic_path = kml.addfile(picture_path)
-					point.description = f'<img src="./{image}" alt="picture" width="400" height="300" align="left" />'
+			create_kml(directory)
 			
-			kml.save(f'IMG/{directory}/{directory}.kml')
-			
-		if not directory.endswith('.zip'):
-			shutil.make_archive(f'IMG/{directory}', 'zip', f'IMG/{directory}')
-	
-			lof.append(f'IMG/{directory}.zip')
+			create_zipfile(directory, lof)
 		
 	send_zip_file(lof)
 	
