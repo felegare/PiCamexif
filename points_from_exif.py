@@ -59,7 +59,7 @@ def send_zip_file(lof):
 	user_password = os.environ['PI_PASSWORD']
 	
 	# User writes the recipient's address
-	recipient = 'flix.lgar@gmail.com' # str(input('Enter destination address : '))
+	recipient = str(input('Enter destination address : '))
 	
 	# Message formating
 	msg = MIMEMultipart()
@@ -68,8 +68,8 @@ def send_zip_file(lof):
 	msg['Subject'] = 'Pictures from PiCamexif'
 	
 	text = """<body>
-<img src="./banner.jpeg"/>
-<p>This email was sent by the <i>PiCamexif</i> Raspberry Pi project.</p>
+<img src="https://github.com/felegare/PiCamexif/blob/master/banner/picamexifbanner.png?raw=true" height="100"/>
+<h3>This email was sent from a <i>PiCamexif</i> Raspberry Pi.</h3>
 <p>Each zip file attached to this email contains :</p>
 <ul>
 	<li>A kml file</li>
@@ -83,8 +83,7 @@ def send_zip_file(lof):
 	<li>Double click on the kml file.</li>
 </ol>
 <br/>
-<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height=20/>
-<p>Check the project's <a href="https://github.com/felegare/PiCamexif">GitHub page</a></p>
+<h4>Visit the PiCamexif <a href="https://github.com/felegare/PiCamexif">GitHub page</a></h4>
 </body>"""
 	
 	body = MIMEText(text, 'html')
