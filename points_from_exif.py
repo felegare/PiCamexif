@@ -59,7 +59,7 @@ def send_zip_file(lof):
 	user_password = os.environ['PI_PASSWORD']
 	
 	# User writes the recipient's address
-	recipient = str(input('Enter destination address : '))
+	recipient = 'flix.lgar@gmail.com' # str(input('Enter destination address : '))
 	
 	# Message formating
 	msg = MIMEMultipart()
@@ -67,11 +67,8 @@ def send_zip_file(lof):
 	msg['To'] = recipient
 	msg['Subject'] = 'Pictures from PiCamexif'
 	
-	# github_link = MIMEText(u'<a href="https://github.com/felegare/PiCamexif">GitHub page</a>','html')
-	
 	text = """<body>
-<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Ffr%2Fthumb%2F3%2F3b%2FRaspberry_Pi_logo.svg%2F130px-Raspberry_Pi_logo.svg.png&f=1&nofb=1" alt="RPi logo" width=50/>
-<h2>PiCamexif</h2>
+<img src="./banner.jpeg"/>
 <p>This email was sent by the <i>PiCamexif</i> Raspberry Pi project.</p>
 <p>Each zip file attached to this email contains :</p>
 <ul>
