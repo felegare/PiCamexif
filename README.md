@@ -1,3 +1,9 @@
+<p align="center">
+<img src="/banner/picamexifbanner.png" width="400">
+</p>
+
+---
+
 ### Table of Contents
 - [PiCamexif Overview](#PiCamexif-Overview)
   * [Hardware Components](#Hardware-Components)
