@@ -84,18 +84,31 @@ pip install picamera adafruit-circuitpython-gps gpsphoto exifread pillow piexif
 > Note : You could also install the python librairies without using virtualenv.
 
 # pi_cam.py
-When running pi_cam.py, it opens a preview window showing the camera view. You can then press the trigger button to take a picture.
-
-Each time you press the button, the program will :
-  1. Store the date and time
-  2. Create a unique folder for the date (It will ignore this step if the folder already exists)
-  3. Get the longitude and latitude coordinates from the GPS module
-  4. Create a unique filename for the picture from the time
-  5. Take the picture
-  6. Write the coordinates to the picture's EXIF tags
-  7. Save the picture
-  8. Return to the preview window
+This program should run at start-up and open a preview window showing the camera view. You can then press the trigger button to take a picture.
 
 # points_from_exif.py
-Creates a compressed folder containing a KML file and the pictures from every directories from the 'IMG' foler.
+Creates a compressed folder containing a KML file and the pictures from every directories from the 'IMG' foler. It then compresses the folder containing the kml file and the pictures and sends the zipfile by email.
+
+Content of the email :
+><body>
+><img src="https://github.com/felegare/PiCamexif/blob/master/banner/picamexifbanner.png?raw=true" height="100"/>
+><h3>This email was sent from a <i>PiCamexif</i> Raspberry Pi.</h3>
+><p>Each zip file attached to this email contains :</p>
+><ul>
+>	<li>A kml file</li>
+>	<li>Pictures</li>
+></ul>
+><p>You can open the kml file using Google Earth Pro.<br>To open the kml file :</p>
+><ol>
+>	<li>Make sure Google Earth Pro is installed on your computer (if not, download it <a href="https://www.google.com/earth/versions/#earth-pro">here</a>)</li>
+>	<li>Download the attachment</li>
+>	<li>Extract all of its content</li>
+>	<li>Double click on the kml file.</li>
+></ol>
+><br/>
+><h4>Visit the PiCamexif <a href="https://github.com/felegare/PiCamexif">GitHub page</a></h4>
+></body>
+
+
+
 
