@@ -31,7 +31,10 @@ All the links for the hardware used for this project are included in the 'Hardwa
 | 3 | [Raspberry Pi Camera Module](https://www.raspberrypi.org/products/camera-module-v2/) | <img src="https://ae01.alicdn.com/kf/HTB1UmwlgwMPMeJjy1Xbq6AwxVXar/Raspberry-Pi-Camera-Module-V2-Original-RPI-3-Camera-Official-camera-V2-8MP-1080P30.jpg" width="200"> | This 8 megapixel camera is really simple to set up and can be used to take photos and videos | 
 | 4 | [Adafruit GPS Module](https://www.adafruit.com/product/746) | <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimages.esellerpro.com%2F2457%2FI%2F31%2Fadafruit-ultimate-gps-breakout.jpg&f=1&nofb=1" width="200"> | This small GPS module can track up to 22 satellites and offers a surprising level of precision. It also comes with a piece of header you have to solder on to use it with a breadboard. |
 | 5 | [TTL Serial Adapter Module USB to UART Converter](https://www.aliexpress.com/item/32774943192.html) | <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg.dxcdn.com%2Fproductimages%2Fsku_443779_1.jpg&f=1&nofb=1" width="200"> | This adapater is very useful because you can connect the GPS module to the Raspberry Pi without using any of the GPIO pins for power or data transmission. |
-| 6 | [4 Pins Tact Switch](https://grobotronics.com/tact-switch-6x6mm-5mm-4pins.html) | <img src="https://grobotronics.com/images/thumbnails/350/350/detailed/1/Tact_Switch__48812_zoom.jpg" width="200"> | This tiny switch is used as a trigger button for the camera. |
+| 6 | [4 Pins Tact Switch](https://grobotronics.com/tact-switch-6x6mm-5mm-4pins.html) | <img src="https://grobotronics.com/images/thumbnails/350/350/detailed/1/Tact_Switch__48812_zoom.jpg" width="200"> | This tiny switch is used as a trigger button for the camera. | 
+| 7 | [Kuman 3.5 inch TFT LCD Display](https://www.amazon.ca/gp/product/B072Q3VRXT/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1) | <img src="https://lh3.googleusercontent.com/proxy/D7GPAY6GT_u-lU44Tyi0U5aHZ7fAQ490YwIva4eoqLhbOTOxzkqaRBQLD52fd0RZsqx9ht_tj2a9UIBwWrajPceldp5WvHP7LovQfIeKF3C4IpOEQWZJ" width="200"> | This screen is ideal for this project. It connects to the board with a HDMI to HDMI connector, uses only 26 of the 40 GPIO pins of the Raspberry Pi and works out of the box |
+| 8 | [Lithium Ion Polymer Battery - 3.7v 2500mAh](https://www.adafruit.com/product/328) | <img src="https://images-na.ssl-images-amazon.com/images/I/41-gVFOj8CL._SX425_.jpg" width="200"> | Battery |
+| 9 | [PowerBoost 1000 Charger](https://www.adafruit.com/product/2465) | <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTRduT1SZFd367tEK3Sw7-SIAWpYiphWkw4MIYBWqUgjh3pmN2l&usqp=CAU" width="200"> | This small board  |
 
 ##### This list is not final and will be updated throughout development.
 
@@ -79,7 +82,7 @@ You can then set and activate your python environment with the following command
 ```shell
 virtualenv YOUR_PATH --python=3.7
 source activate YOUR_ENV/bin/activate
-pip install picamera adafruit-circuitpython-gps gpsphoto exifread pillow piexif
+pip install picamera adafruit-circuitpython-gps gpsphoto exifread pillow piexif simplekml
 ```
 > Note : You could also install the python librairies without using virtualenv.
 
